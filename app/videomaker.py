@@ -9,7 +9,7 @@ except ImportError:
     gTTS = None
 
 
-from settings import TEMP_DIR
+from .settings import TEMP_DIR
 
 
 class VideoMaker:
