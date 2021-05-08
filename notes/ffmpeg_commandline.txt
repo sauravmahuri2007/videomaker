@@ -1,0 +1,27 @@
+# Convert single image and single audion to video:
+
+ffmpeg -loop 1 -y -i image.jpg -i hello.mp3 -shortest -acodec mp3 -qscale:a 7 -vcodec libx264 -preset ultrafast -tune stillimage -maxrate 5K -bufsize 100K -crf 25 -g 100000 result1.mp4
+
+ffmpeg -loop 1 -y -i image.jpg -i hello.mp3 -shortest -acodec mp3 -vcodec libx264 -crf 25 -g 100000 result2.mp4
+
+ffmpeg -loop 1 -y -i image.jpg -i hello.mp3 -shortest -acodec mp3 -vcodec libx264 -vf "format=yuv444p,scale=1920:1080" -crf 25 -g 100000 result3.mp4
+
+ffmpeg -loop 1 -y -i image.jpg -i hello.mp3 -shortest -acodec mp3 -vcodec libx264 -vf "format=yuv444p,scale=1920:1080" -crf 25 -g 50000 result4.mp4
+
+ffmpeg -loop 1 -y -i image.jpg -i hello.mp3 -shortest -acodec mp3 -qscale:a 7 -vcodec libx264 -vf "format=yuv444p,scale=1920:1080" -preset ultrafast -tune stillimage -maxrate 5K -bufsize 100K -crf 25 -g 100000 result5.mp4
+
+ffmpeg -loop 1 -y -i image.jpg -i hello.mp3 -shortest -acodec mp3 -vcodec libx264 -vf "format=yuv444p,scale=1920:1080" -crf 25 -g 100000 result6.mp4
+
+ffmpeg -loop 1 -y -i image.jpg -i hello.mp3 -shortest -acodec mp3 -vcodec libx264 -vf "format=yuv444p,scale=1920:1080" -preset ultrafast -tune stillimage -crf 25 result7.mp4
+- Not effective and bigger size
+
+
+Note:
+-shortest - Take the shortest duration of all the inputs to make the video
+-qscale:a 7 - seems to decreasing the audio quality
+-g 100000 - doesn't seem to doing anything
+
+Winner:
+ffmpeg -loop 1 -y -i image.jpg -i hello.mp3 -shortest -acodec mp3 -vcodec libx264 -vf "format=yuv444p,scale=1920:1080" -crf 25 -g 100000 result3.mp4
+
+
