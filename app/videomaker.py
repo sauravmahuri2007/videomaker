@@ -36,12 +36,12 @@ class VideoMaker:
     def _is_gtts_installed(self):
         return gTTS != None
 
-    def _get_audio_file_gtts(self, file_type='mp3'):
+    def _get_audio_file_gtts(self, file_type='mp3', lang='en', tld='ca'):
         # Returns a pathlib.PATH instance of audio file created
         if not self._is_gtts_installed:
             raise RuntimeError('Please make sure to install gTTS library: `pip install gTTS`')
         
-        tts = gTTS(self._text)
+        tts = gTTS(self._text, lang=lang, tld=tld)
         file_path = self._temp_file_path / (self._file_name_no_extention + '.mp3')
         tts.save(str(file_path))
         return file_path
