@@ -67,9 +67,9 @@ class VideoMaker:
     def _create_video_ffmpeg_cmd(self, audio_path, image_path, output_path=''):
         if not output_path:
             output_path = self._temp_file_path / self._file_name
-        acodec = 'mp3'
-        vcodec = 'libx264'
-        format = 'yuv444p'
+        acodec = 'aac'
+        vcodec = 'h264'
+        format = 'yuv420p'
         scale = '1920:1080'
         gstream = '100000'
         framerate = '25'
